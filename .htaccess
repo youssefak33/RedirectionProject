@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /www/Trackdirect/
+
+    # Réécrire l'URL pour les pages avec action
+    RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?action=$1 [QSA,L]
+
+    # Réécrire l'URL pour les pages avec deux préfixes
+    RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ index.php?action=$1&prefixe2=$2 [QSA,L]
+</IfModule>
