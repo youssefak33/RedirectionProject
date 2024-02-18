@@ -1,3 +1,9 @@
+<?php 
+
+require_once ('src/models/redirection_page.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
