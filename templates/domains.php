@@ -20,14 +20,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                    foreach ($redirectionResults as $result) {
+                    ?>
                     <tr>
-                        <td><a href="#" class="url-link">URL 1</a></td>
-                        <td><a href="#" class="redirection-link">Redirection 1</a></td>
+                        <td><a href="<?=$result['originalLink']?>" class="url-link"><?=$result['originalLink']?></a></td>
+                        <td><a href="<?=$result['urlPath']?>" class="redirection-link"><?=$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])."/".$result['urlPath']?></a></td>
                     </tr>
-                    <tr>
-                        <td><a href="#" class="url-link">URL 2</a></td>
-                        <td><a href="#" class="redirection-link">Redirection 2</a></td>
-                    </tr>
+                    <?php 
+                    }
+                    ?>
                     <!-- Ajoutez d'autres lignes au besoin -->
                 </tbody>
             </table>
