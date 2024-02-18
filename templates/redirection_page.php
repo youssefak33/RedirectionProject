@@ -4,16 +4,16 @@
 
 <!DOCTYPE html>
 <head>
-    <?= $scriptHead ?>
+    <?= $redirectionResults['scriptHead'] ?>
 </head>
 <body>
-    <?= $scriptBody ?>
+    <?= $redirectionResults['scriptBody'] ?>
     <script>
     // Utilisation de la variable PHP dans JavaScript
-    var maVariableJS = <?php echo json_encode($originalLink); ?>;
+    var maVariableJS = <?php echo json_encode($redirectionResults['originalLink']); ?>;
     console.log(maVariableJS);
 
-    window.location.href = 'https://'+maVariableJS;
+    window.location.href = maVariableJS;
     </script>
 </body>
 </html>

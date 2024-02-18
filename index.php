@@ -11,16 +11,22 @@ try {
             require('templates/domains.php');;
         }
         elseif ($_GET['action'] === 'redirects') {
-            if (isset($_POST['link']) && isset($_POST['script'])){
+            if (isset($_POST['link']) && isset($_POST['script_head']) && isset($_POST['script_body'])){
                 $link = $_POST['link'];
-                $script = $_POST['script'];
-                addLink ($link, $script);
+                $scriptHead = $_POST['script_head'];
+                $scriptBody = $_POST['script_body'];
+                addLink ($link, $scriptHead, $scriptBody);
             } else {
                 redirects_add();
             }
         }
-        elseif ($_GET['action'] === $urlPath) {
-            redirectionPage();
+        elseif (isset($_GET['action'])) {
+            foreach ($redirectionResults as $result) {
+                if (isset($result['urlPath']) && $_GET['action'] === $result['urlPath']) {
+                    redirectionPage($result);
+                    break;  // Arrêter la boucle après avoir trouvé la correspondance
+                }
+            }
         }
         else {
             throw new Exception('page non existante');
@@ -32,3 +38,5 @@ try {
     $errorMessage = $e->getMessage();
     die($errorMessage);
 }
+
+print_r($redirectionResults);
