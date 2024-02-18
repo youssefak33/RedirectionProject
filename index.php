@@ -11,6 +11,9 @@ try {
         if ($_GET['action'] === 'domains') {
             linksPage ($redirectionResults);
         }
+        elseif ($_GET['action'] === 'connexion') {
+            require("templates/user.php");
+        }
         elseif ($_GET['action'] === 'redirects') {
             if (isset($_POST['link']) && isset($_POST['script_head']) && isset($_POST['script_body'])){
                 $link = $_POST['link'];

@@ -1,6 +1,5 @@
 <?php $title="Formulaire de lien et de script"?>
     <?php ob_start(); ?>
-    <main>
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $thankYouMessage = "Merci pour votre soumission!";
@@ -22,6 +21,5 @@
             <button type="submit">Soumettre</button>
         </form>
     <?php endif; ?>
-    </main>
     <?php $content = ob_get_clean(); ?>
     <?php require('templates/layout.php') ?>

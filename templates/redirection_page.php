@@ -1,7 +1,3 @@
-<?php 
-    require_once('src/controllers/redirection_page.php')
-?>
-
 <!DOCTYPE html>
 <head>
     <?= $redirectionResults['scriptHead'] ?>

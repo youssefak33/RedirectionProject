@@ -8,7 +8,7 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
             box-sizing: border-box;
         }
 
@@ -34,6 +34,15 @@
         }
 
         button {
+            background-color: #ffbd7c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #button-header {
             background-color: #ffbd7c;
             color: #fff;
             padding: 10px 20px;
@@ -88,8 +97,11 @@
         }
 
         main {
-            min-height: 80%; /* Utiliser height: 100% pour occuper tout l'espace vertical disponible */
+            min-height: 60%; /* Utiliser height: 100% pour occuper tout l'espace vertical disponible */
             box-sizing: border-box;
+            padding-left:50px ;
+            padding-right:50px ;
+            max-width: 100%;
         }
 
         footer {
