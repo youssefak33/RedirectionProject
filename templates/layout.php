@@ -1,9 +1,3 @@
-<?php 
-
-require_once ('src/models/redirection_page.php');
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,10 +6,13 @@ require_once ('src/models/redirection_page.php');
     <title><?=$title?></title>
     <link href="templates/style.css" rel="stylesheet">
     <link href="templates/script.js" rel="script">
+
 </head>
 <body>
     <?php require_once('templates/header.php')?>
+    <main>
     <?= $content ?>
+    </main>
     <?php require_once('templates/footer.php')?>
 </body>
 </html>
