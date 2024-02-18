@@ -10,10 +10,14 @@
     <?= $redirectionResults['scriptBody'] ?>
     <script>
     // Utilisation de la variable PHP dans JavaScript
-    var maVariableJS = <?php echo json_encode($redirectionResults['originalLink']); ?>;
-    console.log(maVariableJS);
-
-    window.location.href = maVariableJS;
+    var originalUrl = <?php echo json_encode($redirectionResults['originalLink']); ?>;
+    console.log(originalUrl);
+    if (originalUrl.startsWith('https://')) {
+        window.location.href = originalUrl;
+    }
+    else {
+    window.location.href = "https://"+originalUrl;
+    }
     </script>
 </body>
 </html>

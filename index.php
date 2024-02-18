@@ -4,11 +4,12 @@ require_once('src/controllers/redirects_add.php');
 require_once('src/controllers/redirects.php');
 require_once('src/controllers/homepage.php');
 require_once('src/controllers/redirection_page.php');
+require_once('src/controllers/links.php');
 
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
         if ($_GET['action'] === 'domains') {
-            require('templates/domains.php');;
+            linksPage ($redirectionResults);
         }
         elseif ($_GET['action'] === 'redirects') {
             if (isset($_POST['link']) && isset($_POST['script_head']) && isset($_POST['script_body'])){
@@ -38,5 +39,3 @@ try {
     $errorMessage = $e->getMessage();
     die($errorMessage);
 }
-
-print_r($redirectionResults);
