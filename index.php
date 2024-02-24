@@ -5,6 +5,10 @@ require_once('src/controllers/redirects.php');
 require_once('src/controllers/homepage.php');
 require_once('src/controllers/redirection_page.php');
 require_once('src/controllers/links.php');
+require_once ('src/controllers/signup.php');
+require_once ('src/controllers/signup_action.php');
+require_once('src/controllers/login.php');
+
 $connected = 1;
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
@@ -38,10 +42,18 @@ try {
             }
         }
         elseif ($connected === 1 && $_GET['action'] === 'connexion') {
-            require_once("templates/login.php");
+            loginPage();
         }
         elseif ($connected === 1 && $_GET['action'] === 'account_creation') {
-            require_once("templates/signup.php");
+            if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST["signup_pass"])) {
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $signupPass = $_POST['signup_pass'];
+                addUser ($name, $email, $signupPass);
+            }
+            else {
+                signUp ();
+            }
         }
         elseif (isset($_GET['action'])) {
             foreach ($redirectionResults as $result) {
