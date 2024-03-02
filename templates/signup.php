@@ -12,6 +12,11 @@
 
   <label for="email">Adresse e-mail :</label>
   <input type="email" id="email" name="email" required>
+  <?php if ($usedEmail != null): ?>
+    <p><?= $usedEmail ?></p>
+  <?php else: ?>
+    <?php $usedEmail = null; ?>
+  <?php endif; ?>
 
   <label for="motDePasse">Mot de passe :</label>
   <input type="password" id="signup_pass" name="signup_pass" required>

@@ -8,7 +8,7 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            min-height: 100vh;
+            min-height: 100%;
             box-sizing: border-box;
         }
 
@@ -19,6 +19,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             height: auto;
             width: 40%;
+        }
+
+        form p {
+            margin-top : 0; 
+            color : red;
         }
 
         label {
@@ -37,6 +42,7 @@
             background-color: #ffbd7c;
             color: #fff;
             padding: 10px 20px;
+            margin: 0 10px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -83,12 +89,14 @@
         nav a {
             color: #fff;
             text-decoration: none;
-            margin: 0 50px;
+            margin: 0 20px;
+            text-align: center;
         }
 
         header .connexion {
             width: 30%;
             text-align: center;
+            margin: 0 10px;
         }
 
         header .logo {
@@ -97,11 +105,12 @@
         }
 
         main {
-            min-height: 60%; /* Utiliser height: 100% pour occuper tout l'espace vertical disponible */
+            min-height: 60%; 
             box-sizing: border-box;
-            padding-left:50px ;
-            padding-right:50px ;
+            padding-left:100px ;
+            padding-right:100px ;
             max-width: 100%;
+            margin-bottom: 50px;
         }
 
         footer {
@@ -163,5 +172,12 @@
         th {
             background-color: #4CAF50;
             color: white;
+        }
+
+        section #page-introuvable {
+            text-align: center;
+        }
+        section #number404 {
+            font-size: 100px;
         }
 
