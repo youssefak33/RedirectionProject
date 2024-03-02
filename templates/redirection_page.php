@@ -5,7 +5,6 @@
 <body>
     <?= $redirectionResults['scriptBody'] ?>
     <script>
-    // Utilisation de la variable PHP dans JavaScript
     var originalUrl = <?php echo json_encode($redirectionResults['originalLink']); ?>;
     console.log(originalUrl);
     if (originalUrl.startsWith('https://')) {

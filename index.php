@@ -1,19 +1,26 @@
 <?php
 
+session_start();
+
 require_once('src/controllers/redirects_add.php');
 require_once('src/controllers/redirects.php');
-require_once('src/controllers/homepage.php');
 require_once('src/controllers/redirection_page.php');
 require_once('src/controllers/links.php');
 require_once ('src/controllers/signup.php');
 require_once ('src/controllers/signup_action.php');
 require_once('src/controllers/login.php');
+require_once('src/controllers/sign_in.php');
+require_once('src/controllers/logout.php');
+require_once('src/controllers/solution_page.php');
+require_once('src/controllers/about_us.php');
 
-$connected = 1;
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
-        if ($connected === 0) {
-            if ($_GET['action'] === 'domains') {
+        if (!empty($_SESSION['user']['username']) && !empty($_SESSION['user']['email'])) {
+            if ($_GET['action']=== '' OR $_GET['action']=== 'notre-solution') {
+                solutionPage();
+            }
+            elseif ($_GET['action'] === 'domains') {
                 linksPage ($redirectionResults);
             }
             elseif ($_GET['action'] === 'redirects') {
@@ -26,56 +33,85 @@ try {
                     redirects_add();
                 }
             }
+            elseif ($_GET['action'] === 'deconnexion') {
+                logoutUser();
+            }
+            elseif ($_GET['action'] === 'connexion' OR $_GET['action'] === 'account_creation') {
+                require_once('templates/profil');
+            }
+            elseif ($_GET['action']==='apropos') {
+                aboutUs();
+            }
             elseif (isset($_GET['action'])) {
+                $findUrlPath = false;
                 foreach ($redirectionResults as $result) {
-                    if (isset($result['urlPath']) && $_GET['action'] === $result['urlPath']) {
+                    if ($_GET['action'] === $result['urlPath']) {
                         redirectionPage($result);
-                        break;  // stop the looop after finding the path 
+                        $findUrlPath = true;
+                        break;  
                     }
-                    else {
-                        throw new Exception('page non existante');
-                    }
+                }
+                if (!$findUrlPath) {
+                    require_once('templates/404.php');
                 }
             }
             else {
                 throw new Exception('page non existante');
             }
         }
-        elseif ($connected === 1 && $_GET['action'] === 'connexion') {
-            loginPage();
-        }
-        elseif ($connected === 1 && $_GET['action'] === 'account_creation') {
-            if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST["signup_pass"])) {
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $signupPass = $_POST['signup_pass'];
-                addUser ($name, $email, $signupPass);
-            }
-            else {
-                signUp ();
-            }
-        }
-        elseif (isset($_GET['action'])) {
-            foreach ($redirectionResults as $result) {
-                if (isset($result['urlPath']) && $_GET['action'] === $result['urlPath']) {
-                    redirectionPage($result);
-                    break;  // stop the looop after finding the path 
+        else {
+            if ($_GET['action'] === 'connexion') {
+                if (isset($_POST['email']) && isset($_POST['password'])) {
+                    $emailLogin = $_POST['email'];
+                    $passwordLogin = $_POST['password'];
+                    signIn($emailLogin, $passwordLogin);
                 }
                 else {
-                    header('Location: connexion');
-                    exit();
-                }  
+                    loginPage();
+                }
             }
-        }
-        else {
-            header('Location: connexion');
-            exit();
+            elseif ($_GET['action'] === 'account_creation') {
+                if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST["signup_pass"])) {
+                    $name = $_POST['name'];
+                    $email = $_POST['email'];
+                    $signupPass = $_POST['signup_pass'];
+                    addUser ($name, $email, $signupPass);
+                }
+                else {
+                    signUp ();
+                }
+            }
+            elseif ($_GET['action'] === 'notre-solution') {
+                solutionPage();
+            }
+            elseif ($_GET['action']==='apropos') {
+                aboutUs();
+            }
+            elseif (isset($_GET['action'])) {
+                $findUrlPath = false;
+                if (is_array($redirectionResults) && !empty($redirectionResults)) {
+                    foreach ($redirectionResults as $result) {
+                        if (isset($_GET['action']) && $_GET['action'] === $result['urlPath']) {
+                            redirectionPage($result);
+                            $findUrlPath = true;
+                            break;  
+                        }
+                    }
+                } else {
+                    require_once('templates/404.php');
+                }
+            }         
+            else {
+                header('Location: connexion');
+                exit();
+            }
         }   
     }
     else {
-            homepage();
-    }    
-}   catch (Exception $e) {
-    $errorMessage = $e->getMessage();
-    die($errorMessage);
+        solutionPage();
+    }
+}    
+catch (Exception $e) {
+$errorMessage = $e->getMessage();
+die($errorMessage);
 }

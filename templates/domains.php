@@ -6,7 +6,6 @@
             <h2>Noms de Domaines</h2>
             <ul>
                 <li><?= $_SERVER['HTTP_HOST']; ?></li>
-                <!-- Ajoutez d'autres domaines au besoin -->
             </ul>
         </div>
 
@@ -30,11 +29,10 @@
                     <?php 
                     }
                     ?>
-                    <!-- Ajoutez d'autres lignes au besoin -->
                 </tbody>
             </table>
         </div>
     </div>
     </main>
 <?php $content = ob_get_clean(); ?>
-<?php require('templates/layout.php'); ?>
+<?php require_once('templates/layout.php'); ?>

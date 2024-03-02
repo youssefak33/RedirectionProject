@@ -7,9 +7,9 @@ function linkAdded(string $originalLink, string $scriptHeadTracking, string $scr
 {
     $database = linkDbConnect();
     $statement = $database->prepare(
-        'INSERT INTO link_tracking(original_link, script_head, script_body) VALUES(?, ?, ?)'
+        'INSERT INTO link_tracking(original_link, script_head, script_body, user_account_id) VALUES(?, ?, ?, ?)'
     );
-    $affectedLines = $statement->execute([$originalLink, $scriptHeadTracking, $scriptBodyTracking]);
+    $affectedLines = $statement->execute([$originalLink, $scriptHeadTracking, $scriptBodyTracking, $_SESSION['user']['id']]);
 
     return ($affectedLines > 0);
 }

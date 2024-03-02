@@ -20,7 +20,8 @@ $success = createAccount ($userName, $userEmail, $userPassword);
 
 if (!$success) {
     $messageAccountCreation = "Désolé, il y a eu une erreur et votre compte n'a pas pu être créé";
-    signUp ($messageAccountCreation);
+    $usedEmail = null; 
+    signUp ($messageAccountCreation, $usedEmail);
 }
 else {
     $accountCreated = "Merci, votre compte a été créé. Veuillez vous connecter";
