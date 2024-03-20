@@ -6,7 +6,6 @@
     <?= $redirectionResults['scriptBody'] ?>
     <script>
     var originalUrl = <?php echo json_encode($redirectionResults['originalLink']); ?>;
-    console.log(originalUrl);
     if (originalUrl.startsWith('https://')) {
         window.location.href = originalUrl;
     }

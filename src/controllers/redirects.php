@@ -14,7 +14,7 @@ function addLink ($link, $scriptHead, $scriptBody) {
         $scriptHeadTracking = $scriptHead;
         $scriptBodyTracking = $scriptBody;
     } else{
-        throw new Exception ('le lien et script n\'ont pas été ajoutés');
+        throw new Exception ('le lien et/ou script n\'ont pas été ajoutés');
     }
     
     $success = linkAdded($originalLink, $scriptHeadTracking, $scriptBodyTracking);
