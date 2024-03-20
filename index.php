@@ -25,9 +25,9 @@ try {
             }
             elseif ($_GET['action'] === 'redirects') {
                 if (isset($_POST['link']) && isset($_POST['script_head']) && isset($_POST['script_body'])){
-                    $link = $_POST['link'];
-                    $scriptHead = $_POST['script_head'];
-                    $scriptBody = $_POST['script_body'];
+                    $link = htmlspecialchars($_POST['link']);
+                    $scriptHead = htmlspecialchars($_POST['script_head']);
+                    $scriptBody = htmlspecialchars($_POST['script_body']);
                     addLink ($link, $scriptHead, $scriptBody);
                 } else {
                     redirects_add();
@@ -62,8 +62,8 @@ try {
         else {
             if ($_GET['action'] === 'connexion') {
                 if (isset($_POST['email']) && isset($_POST['password'])) {
-                    $emailLogin = $_POST['email'];
-                    $passwordLogin = $_POST['password'];
+                    $emailLogin = htmlspecialchars($_POST['email']);
+                    $passwordLogin = htmlspecialchars($_POST['password']);
                     signIn($emailLogin, $passwordLogin);
                 }
                 else {
@@ -71,10 +71,10 @@ try {
                 }
             }
             elseif ($_GET['action'] === 'account_creation') {
-                if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST["signup_pass"])) {
-                    $name = $_POST['name'];
-                    $email = $_POST['email'];
-                    $signupPass = $_POST['signup_pass'];
+                if (isset($_POST['name']) && isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && isset($_POST["signup_pass"])) {
+                    $name = htmlspecialchars($_POST['name']);
+                    $email = htmlspecialchars($_POST['email']);
+                    $signupPass = password_hash($_POST['signup_pass'], PASSWORD_ARGON2ID);
                     addUser ($name, $email, $signupPass);
                 }
                 else {

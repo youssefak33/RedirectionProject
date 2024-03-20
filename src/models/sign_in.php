@@ -20,7 +20,7 @@ function connectedUser()
     if (!$existedUser) {
         echo "L'utilisateur n'existe pas";
     }
-    elseif ($_POST['password'] != $existedUser['password']){ 
+    elseif (!password_verify($_POST['password'], $existedUser['password'])){ 
         echo "L'utilisateur n'existe pas";
     }
     else {
