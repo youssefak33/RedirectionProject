@@ -1,5 +1,5 @@
 <h1>RedirectionProject</h1>
-<p>RedirectionProject is a web application developed in PHP following the MVC (Model-View-Controller) architecture. It enables users to create custom redirect URLs, facilitating the tracking of links from external sources such as Google Drive documents, SharePoint, or other similar platforms. This functionality is comparable to Pardot's Custom Redirect feature, which allows the creation of personalized links to monitor user interactions.
+<p>RedirectionProject is a web application developed in PHP following the MVC architecture. It enables users to create custom redirect URLs, facilitating the tracking of links from external sources such as Google Drive documents, SharePoint, or other similar platforms. This functionality is comparable to Pardot's Custom Redirect feature, which allows the creation of personalized links to monitor user interactions.
 <p></p>
 <h2>Key Features</h2>
 
