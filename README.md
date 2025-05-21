@@ -10,3 +10,39 @@
 <p><b>Languages:</b> PHP, JavaScript, HTML, CSS</p>
 <p><b>Architecture:</b> MVC</p>
 <p><b>Database:</b> MySQL</p>
+
+## Database Setup
+
+This application uses a MySQL database.
+
+1.  **Ensure you have a MySQL server running.**
+2.  **Create a database named `tackdirect`**. You can use a tool like phpMyAdmin or the MySQL command line:
+    ```sql
+    CREATE DATABASE tackdirect CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    ```
+3.  **Import the schema.** The table structure is defined in `database/schema.sql`. You can import it using:
+    *   **Command Line:**
+        ```bash
+        mysql -u your_username -p tackdirect < database/schema.sql
+        ```
+        (Replace `your_username` with your MySQL username. You will be prompted for your password.)
+    *   **phpMyAdmin:** Select the `tackdirect` database, go to the "Import" tab, and upload the `database/schema.sql` file.
+
+4.  **Verify database credentials.** The application connects to the database using credentials in `src/lib/database.php`. By default, it's set to:
+    *   Host: `localhost`
+    *   Database name: `tackdirect`
+    *   User: `root`
+    *   Password: `root`
+    If your MySQL setup uses different credentials, please update them in `src/lib/database.php`:
+    ```php
+    // src/lib/database.php
+    function linkDbConnect()
+    {
+        try {
+            $database = new PDO ('mysql:host=localhost;dbname=tackdirect;charset=utf8','root','root'); // Update 'root','root' if needed
+        }  catch (Exception $e)  {
+                die('Erreur : '.$e->getMessage());
+        }
+        return $database;
+    }
+    ```
