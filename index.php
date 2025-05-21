@@ -13,6 +13,9 @@ require_once('src/controllers/sign_in.php');
 require_once('src/controllers/logout.php');
 require_once('src/controllers/solution_page.php');
 require_once('src/controllers/about_us.php');
+require_once('src/controllers/delete_redirect.php');
+require_once('src/controllers/edit_redirect.php');
+require_once('src/controllers/profile.php');
 
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
@@ -36,11 +39,20 @@ try {
             elseif ($_GET['action'] === 'deconnexion') {
                 logoutUser();
             }
-            elseif ($_GET['action'] === 'connexion' OR $_GET['action'] === 'account_creation') {
-                require_once('templates/profil');
+            elseif ($_GET['action'] === 'profile') { 
+                profilePageController();
             }
             elseif ($_GET['action']==='apropos') {
                 aboutUs();
+            }
+            elseif ($_GET['action'] === 'delete_redirect') {
+                deleteRedirectController();
+            }
+            elseif ($_GET['action'] === 'edit_redirect') {
+                editRedirectPage();
+            }
+            elseif ($_GET['action'] === 'update_redirect_submit') {
+                updateRedirectSubmitController(); // Handles the form submission for edit
             }
             elseif (isset($_GET['action'])) {
                 $findUrlPath = false;
